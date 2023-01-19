@@ -2,6 +2,11 @@
 local api = vim.api
 local cmd = vim.cmd
 
+vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
+	pattern = {"*.tf", "*.tfvars"},
+	command = "set filetype=hcl",
+})
+
 -- local function map(mode, lhs, rhs, opts)
   -- local options = { noremap = true, silent = true }
   -- if opts then
@@ -23,11 +28,22 @@ vim.keymap.set({'n', 'v'}, 'g<space>', '<cmd>lua vim.lsp.buf.hover()<CR>', { buf
 -- vim.o.foldmethod='expr'
 -- vim.o.foldexpr='nvim_treesitter#foldexpr()'
 
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'sh',
+  callback = function()
+    vim.lsp.start({
+      name = 'bash-language-server',
+      cmd = { 'bash-language-server', 'start' },
+    })
+  end,
+})
+
 local options = { noremap = true, silent = true }
 vim.api.nvim_set_keymap("n", "<C-p>", "<cmd>:FuzzyOpen<CR>", options)
 vim.api.nvim_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", options)
 -- vim.api.nvim_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", options)
 vim.api.nvim_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.definition()<CR>", options)
+-- vim.api.nvim_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.definition()<CR>", options)
 vim.api.nvim_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", options)
 vim.api.nvim_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", options)
 -- vim.api.nvim_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", options)
@@ -45,14 +61,6 @@ vim.api.nvim_set_keymap("n", "<leader>aw", [[<cmd>lua vim.diagnostic.setqflist({
 vim.api.nvim_set_keymap("n", "<leader>d", "<cmd>lua vim.diagnostic.setloclist()<CR>", options) -- buffer diagnostics onl, optionsy
 vim.api.nvim_set_keymap("n", "[c", "<cmd>lua vim.diagnostic.goto_prev { wrap = false }<CR>", options)
 vim.api.nvim_set_keymap("n", "]c", "<cmd>lua vim.diagnostic.goto_next { wrap = false }<CR>", options)
-
-vim.api.nvim_set_keymap("n", "<leader>ff", "<cmd>:lua fzy.execute('fd', fzy.sinks.edit_file)<CR>", options)
-vim.api.nvim_set_keymap("n", "<leader>fb","<cmd>:lua fzy.actions.buffers()<CR>", options)
-vim.api.nvim_set_keymap("n", "<leader>ft","<cmd>:lua fzy.try(fzy.actions.lsp_tags, fzy.actions.buf_tags)<CR>", options)
-vim.api.nvim_set_keymap("n", "<leader>fg", "<cmd>:lua fzy.execute('git ls-files', fzy.sinks.edit_file)<CR>", options)
-vim.api.nvim_set_keymap("n", "<leader>fq", "<cmd>:lua fzy.actions.quickfix()<CR>", options)
-vim.api.nvim_set_keymap("n", "<leader>f/", "<cmd>:lua fzy.actions.buf_lines()<CR>", options)
-vim.api.nvim_set_keymap("n", "<leader>fl", "<cmd>:lua fzy.execute('ag --nobreak --noheading .', fzy.sinks.edit_live_grep)<CR>", options)
 
 
 
@@ -153,8 +161,30 @@ return require('packer').startup(function()
   use "b0o/incline.nvim"
   use 'MichaHoffmann/tree-sitter-hcl'
   use "lukas-reineke/indent-blankline.nvim"
+  use {"shortcuts/no-neck-pain.nvim", tag = "*" }
+
+  use 'neovim/nvim-lspconfig' -- Configurations for Nvim LSP
+
+  use "tpope/vim-fugitive"
+
   require('fzy')
 
+  vim.api.nvim_set_keymap("n", "<leader>ff", "<cmd>:lua fzy.execute('fd', fzy.sinks.edit_file)<CR>", options)
+  vim.api.nvim_set_keymap("n", "<leader>fb","<cmd>:lua fzy.actions.buffers()<CR>", options)
+  vim.api.nvim_set_keymap("n", "<leader>ft","<cmd>:lua fzy.try(fzy.actions.lsp_tags, fzy.actions.buf_tags)<CR>", options)
+  vim.api.nvim_set_keymap("n", "<leader>fg", "<cmd>:lua fzy.execute('git ls-files', fzy.sinks.edit_file)<CR>", options)
+  vim.api.nvim_set_keymap("n", "<leader>fq", "<cmd>:lua fzy.actions.quickfix()<CR>", options)
+  vim.api.nvim_set_keymap("n", "<leader>f/", "<cmd>:lua fzy.actions.buf_lines()<CR>", options)
+  vim.api.nvim_set_keymap("n", "<leader>fl", "<cmd>lua fzy.execute('ag --nobreak --noheading .', fzy.sinks.edit_live_grep)<CR>", options)
+
+  require("no-neck-pain").setup({
+      buffers = {
+	  right = {
+	      enabled = false,
+	  },
+      },
+  })
+  require'lspconfig'.pyright.setup{}
 
 
 
