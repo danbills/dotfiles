@@ -147,6 +147,7 @@ return require('packer').startup(function()
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-path'
+  use 'vim-airline/vim-airline'
   -- use 'mitchellh/tree-sitter-hcl'
 
   use 'hrsh7th/cmp-cmdline'
@@ -161,12 +162,45 @@ return require('packer').startup(function()
   use "b0o/incline.nvim"
   use 'MichaHoffmann/tree-sitter-hcl'
   use "lukas-reineke/indent-blankline.nvim"
-  use {"shortcuts/no-neck-pain.nvim", tag = "*" }
+  -- use {"shortcuts/no-neck-pain.nvim", tag = "*" }
 
   use 'neovim/nvim-lspconfig' -- Configurations for Nvim LSP
 
   use "tpope/vim-fugitive"
 
+  use {
+	  'mrcjkb/haskell-tools.nvim',
+	  requires = {
+		  'nvim-lua/plenary.nvim',
+		  'nvim-telescope/telescope.nvim', -- optional
+	  } --,
+	  -- branch = '1.x.x', -- recommended
+  }
+
+  local ht = require('haskell-tools')
+
+  local def_opts = { noremap = true, silent = true, }
+  ht.setup {
+	  hls = {
+		  on_attach = function(client, bufnr)
+			  local opts = vim.tbl_extend('keep', def_opts, { buffer = bufnr, })
+			  -- haskell-language-server relies heavily on codeLenses,
+			  -- so auto-refresh (see advanced configuration) is enabled by default
+			  vim.keymap.set('n', '<space>ca', vim.lsp.codelens.run, opts)
+			  vim.keymap.set('n', '<space>hs', ht.hoogle.hoogle_signature, opts)
+		  end,
+	  },
+  }
+  -- Suggested keymaps that do not depend on haskell-language-server
+  -- Toggle a GHCi repl for the current package
+  vim.keymap.set('n', '<leader>rr', ht.repl.toggle, def_opts)
+  -- Toggle a GHCi repl for the current buffer
+  vim.keymap.set('n', '<leader>rf', function()
+	  ht.repl.toggle(vim.api.nvim_buf_get_name(0))
+  end, def_opts)
+  vim.keymap.set('n', '<leader>rq', ht.repl.quit, def_opts)
+
+  fzy = require('fzy')
   require('fzy')
 
   vim.api.nvim_set_keymap("n", "<leader>ff", "<cmd>:lua fzy.execute('fd', fzy.sinks.edit_file)<CR>", options)
@@ -177,13 +211,13 @@ return require('packer').startup(function()
   vim.api.nvim_set_keymap("n", "<leader>f/", "<cmd>:lua fzy.actions.buf_lines()<CR>", options)
   vim.api.nvim_set_keymap("n", "<leader>fl", "<cmd>lua fzy.execute('ag --nobreak --noheading .', fzy.sinks.edit_live_grep)<CR>", options)
 
-  require("no-neck-pain").setup({
-      buffers = {
-	  right = {
-	      enabled = false,
-	  },
-      },
-  })
+  -- requir'e("no-neck-pain").setup({
+  --     buffers = {
+	  -- right = {
+	      -- enabled = false,
+	  -- },
+  --     },
+  -- })
   require'lspconfig'.pyright.setup{}
 
 
