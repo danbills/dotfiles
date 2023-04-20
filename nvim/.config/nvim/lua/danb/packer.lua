@@ -27,5 +27,8 @@ return require('packer').startup(function(use)
   use ( 'hrsh7th/cmp-cmdline' )
 
   use ( 'L3MON4D3/LuaSnip' )
+  use ( 'vim-airline/vim-airline' )
+  use ( 'preservim/nerdtree' )
+  use ( 'f-person/git-blame.nvim' )
 end)
 

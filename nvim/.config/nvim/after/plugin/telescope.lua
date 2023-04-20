@@ -7,6 +7,7 @@ vim.keymap.set('n', '<C-p>', builtin.git_files, {})
 vim.keymap.set('n', 'gR', builtin.lsp_references, {})
 vim.keymap.set('n', 'gD', builtin.lsp_definitions, {})
 vim.keymap.set('n', 'gi', builtin.lsp_implementations, {})
+vim.keymap.set('n', '<leader>b', builtin.buffers, {})
 
 -- vim.keymap.set('n', 'gt', builtin.lsp_type_implementations, {})
 
