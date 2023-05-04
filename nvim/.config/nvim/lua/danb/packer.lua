@@ -29,6 +29,16 @@ return require('packer').startup(function(use)
   use ( 'L3MON4D3/LuaSnip' )
   use ( 'vim-airline/vim-airline' )
   use ( 'preservim/nerdtree' )
-  use ( 'f-person/git-blame.nvim' )
+  -- use ( 'f-person/git-blame.nvim' )
+  --
+  use ( 'godlygeek/tabular')
+  use ( 'tpope/vim-commentary' )
+  use 'preservim/vim-markdown' 
+
+  use 'neovim/nvim-lspconfig' -- Configurations for Nvim LSP
+
+  use 'hashivim/vim-terraform'
+
+  use({'ckipp01/nvim-jenkinsfile-linter', requires = { "nvim-lua/plenary.nvim" } })
 end)
 
