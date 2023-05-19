@@ -14,9 +14,7 @@ return require('packer').startup(function(use)
   }
   use ( 'nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
 
-  use {'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons'}
   use ( 'mfussenegger/nvim-jdtls' )
-  use ('tpope/vim-fugitive')
   use ('nvim-telescope/telescope-fzy-native.nvim' )
   use ('hashivim/vim-terraform')
   use({'scalameta/nvim-metals', requires = { "nvim-lua/plenary.nvim" }})
@@ -28,7 +26,6 @@ return require('packer').startup(function(use)
 
   use ( 'L3MON4D3/LuaSnip' )
   use ( 'vim-airline/vim-airline' )
-  use ( 'preservim/nerdtree' )
   -- use ( 'f-person/git-blame.nvim' )
   --
   use ( 'godlygeek/tabular')
@@ -37,8 +34,25 @@ return require('packer').startup(function(use)
 
   use 'neovim/nvim-lspconfig' -- Configurations for Nvim LSP
 
-  use 'hashivim/vim-terraform'
-
   use({'ckipp01/nvim-jenkinsfile-linter', requires = { "nvim-lua/plenary.nvim" } })
+
+  use ( 'preservim/nerdtree' )
+
+  use ('tpope/vim-fugitive')
+
+  use {
+	  "folke/trouble.nvim",
+	  requires = "nvim-tree/nvim-web-devicons",
+	  config = function()
+		  require("trouble").setup {
+			  -- your configuration comes here
+			  -- or leave it empty to use the default settings
+			  -- refer to the configuration section below
+		  }
+	  end 
+  }
+
+  use {'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons'}
+
 end)
 
