@@ -9,7 +9,8 @@ local config = {
   cmd = {
 
     -- 💀
-    'java', -- or '/path/to/java11_or_newer/bin/java'
+    '/Library/Java/JavaVirtualMachines/temurin-20.jdk/Contents/Home/bin/java',
+    -- 'java', -- or '/path/to/java11_or_newer/bin/java'
             -- depends on if `java` is in your $PATH env variable and if it points to the right version.
 
     '-Declipse.application=org.eclipse.jdt.ls.core.id1',
@@ -23,7 +24,7 @@ local config = {
     '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
 
     -- 💀
-    '-jar', '/Users/dbillings/bin/jdtls/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar',
+    '-jar', '/Users/dbillings/Downloads/jdtls2/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar',
     --'-jar', '/path/to/jdtls_install_location/plugins/org.eclipse.equinox.launcher_VERSION_NUMBER.jar',
          -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                       ^^^^^^^^^^^^^^
          -- Must point to the                                                     Change this to
@@ -31,7 +32,7 @@ local config = {
 
 
     -- 💀
-    '-configuration', '/Users/dbillings/bin/jdtls/config_mac',
+    '-configuration', '/Users/dbillings/Downloads/jdtls2/config_mac',
     -- /path/to/jdtls_install_location/config_SYSTEM',
                     -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^        ^^^^^^
                     -- Must point to the                      Change to one of `linux`, `win` or `mac`
@@ -54,7 +55,16 @@ local config = {
   -- for a list of options
   settings = {
     java = {
-      signatureHelp = { enabled = true },
+      signatureHelp = { enabled = true } --,
+      -- configuration = {
+      --   runtimes = {
+      --     {
+      --       name = 'JavaSE-20', -- name here matters - must be in `JavaSE-version>` format.
+      --       -- path = '/Library/Java/JavaVirtualMachines/temurin-20.jdk/Contents/Home/bin/java'
+      --       path = '/Library/Java/JavaVirtualMachines/temurin-20.jdk/Contents/Home/'
+      --     }
+      --   };
+      -- };
     }
   },
 

@@ -21,7 +21,7 @@ return require('packer').startup(function(use)
 
   use ( 'hrsh7th/nvim-cmp' )
   use ( 'hrsh7th/cmp-nvim-lsp' )
-  use ( 'hrsh7th/cmp-buffer' )
+  -- use ( 'hrsh7th/cmp-buffer' )
   use ( 'hrsh7th/cmp-cmdline' )
 
   use ( 'L3MON4D3/LuaSnip' )
@@ -30,7 +30,7 @@ return require('packer').startup(function(use)
   --
   use ( 'godlygeek/tabular')
   use ( 'tpope/vim-commentary' )
-  use 'preservim/vim-markdown' 
+  -- use 'preservim/vim-markdown' 
 
   use 'neovim/nvim-lspconfig' -- Configurations for Nvim LSP
 
@@ -53,6 +53,9 @@ return require('packer').startup(function(use)
   }
 
   use {'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons'}
+  use ( 'github/copilot.vim' )
+
+
 
 end)
 
