@@ -1,7 +1,7 @@
 curl -L https://nixos.org/nix/install | sh
 
 # Fix bug where ssm-user doesn't appear!
-if [ -n "$USER" ]; then
+if [ -z "$USER" ]; then
   export USER=$(whoami);
 fi
 . ~/.nix-profile/etc/profile.d/nix.sh
