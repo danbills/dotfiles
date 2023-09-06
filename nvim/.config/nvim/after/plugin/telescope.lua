@@ -17,5 +17,5 @@ vim.keymap.set('n', '<leader>ps', function()
 	builtin.grep_string({ search = vim.fn.input("Grep > ") });
 end)
 
-require('telescope').load_extension('fzy_native')
+-- require('telescope').load_extension('fzy_native')
 
