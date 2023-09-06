@@ -1,6 +1,9 @@
-
 curl -L https://nixos.org/nix/install | sh
 
+# Fix bug where ssm-user doesn't appear!
+if [ -n "$USER" ]; then
+  export USER=$(whoami);
+fi
 . ~/.nix-profile/etc/profile.d/nix.sh
 
 nix-env -iA \
@@ -18,16 +21,16 @@ nix-env -iA \
 	nixpkgs.wget \
 	nixpkgs.bat \
 	nixpkgs.direnv \
+	nixpkgs.tree \
+	nixpkgs.htop \
 	nixpkgs.yarn 
 
-git clone --depth 1 https://github.com/wbthomason/packer.nvim\
- ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-
 stow nvim
+stow tmux
 
-command -v zsh | sudo too -a /etc/shells
+# command -v zsh | sudo too -a /etc/shells
 
-sudo chsh -s $(which zsh) $USER
+# sudo chsh -s $(which zsh) $USER
 
-# bundle zsh plugins
-antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh
+# # bundle zsh plugins
+# antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh
