@@ -35,8 +35,10 @@ local plugins = {
   "tpope/vim-fugitive",
   "folke/trouble.nvim",
   "akinsho/bufferline.nvim",
-  "github/copilot.vim",
+  -- "github/copilot.vim",
   "nvim-tree/nvim-web-devicons",
+  "godlygeek/tabular",
+  "preservim/vim-markdown"
 }
 
 require("lazy").setup(plugins, opts)
