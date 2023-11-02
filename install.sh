@@ -23,6 +23,7 @@ nix-env -iA \
 	nixpkgs.direnv \
 	nixpkgs.tree \
 	nixpkgs.htop \
+        nixpkgs.stow \
 	nixpkgs.yarn 
 
 stow nvim
