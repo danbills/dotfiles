@@ -15,10 +15,11 @@ local plugins = {
   "nvim-telescope/telescope.nvim",
   "nvim-lua/plenary.nvim",
   "nvim-treesitter/nvim-treesitter",
+  'nvim-treesitter/nvim-treesitter-textobjects',
   "mfussenegger/nvim-jdtls",
   "nvim-telescope/telescope-fzy-native.nvim",
   "hashivim/vim-terraform",
-  "scalameta/nvim-metals",
+  -- "scalameta/nvim-metals",
   "hrsh7th/nvim-cmp",
   "hrsh7th/cmp-nvim-lsp",
   "hrsh7th/cmp-buffer",
@@ -28,7 +29,7 @@ local plugins = {
   "f-person/git-blame.nvim",
   "godlygeek/tabular",
   "tpope/vim-commentary",
-  "preservim/vim-markdown",
+  -- "preservim/vim-markdown",
   "neovim/nvim-lspconfig",
   "ckipp01/nvim-jenkinsfile-linter",
   "preservim/nerdtree",
@@ -36,7 +37,31 @@ local plugins = {
   "folke/trouble.nvim",
   "akinsho/bufferline.nvim",
   "github/copilot.vim",
+  "joshuavial/aider.nvim",
   "nvim-tree/nvim-web-devicons",
+  {
+    "nvim-telescope/telescope-frecency.nvim",
+    config = function()
+      require("telescope").load_extension "frecency"
+    end,
+  },
+  {
+    'mrcjkb/haskell-tools.nvim',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+    },
+    version = '^2', -- Recommended
+    ft = { 'haskell', 'lhaskell', 'cabal', 'cabalproject' },
+  },
+  {
+    "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    },
+  }
 }
 
 require("lazy").setup(plugins, opts)

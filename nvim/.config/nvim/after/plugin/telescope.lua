@@ -1,7 +1,14 @@
 local builtin = require('telescope.builtin')
 
+require('telescope').setup{
+	defaults = {
+		path_display={"smart"} 
+	}
+}
+
 vim.keymap.set('n', '<leader>pf', builtin.find_files, {})
 vim.keymap.set('n', '<leader>fo', builtin.oldfiles, {})
+-- print("")
 vim.keymap.set('n', '<leader>fG', builtin.grep_string, {} )
 vim.keymap.set('n', '<leader>fl', builtin.resume, {} )
 
