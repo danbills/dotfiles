@@ -12,6 +12,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
+  "nvim-treesitter/nvim-treesitter-context",
   "nvim-telescope/telescope.nvim",
   "nvim-lua/plenary.nvim",
   "nvim-treesitter/nvim-treesitter",
@@ -19,17 +20,16 @@ local plugins = {
   "mfussenegger/nvim-jdtls",
   "nvim-telescope/telescope-fzy-native.nvim",
   "hashivim/vim-terraform",
-  -- "scalameta/nvim-metals",
+  "scalameta/nvim-metals",
   "hrsh7th/nvim-cmp",
   "hrsh7th/cmp-nvim-lsp",
   "hrsh7th/cmp-buffer",
   "hrsh7th/cmp-cmdline",
-  "L3MON4D3/LuaSnip",
+--  "L3MON4D3/LuaSnip",
   "vim-airline/vim-airline",
   "f-person/git-blame.nvim",
   "godlygeek/tabular",
   "tpope/vim-commentary",
-  -- "preservim/vim-markdown",
   "neovim/nvim-lspconfig",
   "ckipp01/nvim-jenkinsfile-linter",
   "preservim/nerdtree",
@@ -61,7 +61,20 @@ local plugins = {
       -- or leave it empty to use the default settings
       -- refer to the configuration section below
     },
+  },
+  {
+  "folke/which-key.nvim",
+  event = "VeryLazy",
+  init = function()
+    vim.o.timeout = true
+    vim.o.timeoutlen = 300
+  end,
+  opts = {
+    -- your configuration comes here
+    -- or leave it empty to use the default settings
+    -- refer to the configuration section below
   }
+}
 }
 
 require("lazy").setup(plugins, opts)

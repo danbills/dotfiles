@@ -8,3 +8,6 @@ vim.wo.foldenable = false
 -- set shiftwidth to 2
 vim.bo.shiftwidth = 2
 vim.go.shiftwidth = 2
+vim.opt.completeopt = { "menu" }
+vim.opt.omnifunc = 'v:lua.vim.lsp.omnifunc'
+

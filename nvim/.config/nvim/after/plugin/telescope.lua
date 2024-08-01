@@ -12,6 +12,9 @@ vim.keymap.set('n', '<leader>fo', builtin.oldfiles, {})
 vim.keymap.set('n', '<leader>fG', builtin.grep_string, {} )
 vim.keymap.set('n', '<leader>fl', builtin.resume, {} )
 
+-- set ctrl-l to run telescope live grep
+vim.keymap.set('n', '<C-l>', builtin.live_grep, {})
+
 vim.keymap.set('n', '<C-p>', builtin.git_files, {})
 vim.keymap.set('n', 'gr', builtin.lsp_references, {})
 vim.keymap.set('n', 'gD', builtin.lsp_definitions, {})
