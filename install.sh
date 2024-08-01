@@ -24,6 +24,7 @@ nix-env -iA \
 	nixpkgs.tree \
 	nixpkgs.htop \
 	nixpkgs.python311Packages.pip \
+        nixpkgs.stow \
 	nixpkgs.yarn 
 
 stow nvim
