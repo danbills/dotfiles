@@ -9,7 +9,7 @@ vim.keymap.set("n", "<leader>h", "<cmd>lua vim.lsp.buf.hover()<CR>")
 vim.keymap.set("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>")
 vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")
 vim.keymap.set({'n', 'v'}, 'gh', '<cmd>lua vim.lsp.buf.hover()<CR>', { buffer=true })
-vim.keymap.set("n", "N", "<cmd>lua vim.diagnostic.goto_next()<CR>")
+-- vim.keymap.set("n", "N", "<cmd>lua vim.diagnostic.goto_next()<CR>")
 vim.keymap.set("n", "F", "<cmd>Telescope frecency<CR>")
 
 vim.keymap.set("n", "<S-h>", "<cmd>bprevious<cr>")

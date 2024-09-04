@@ -2,6 +2,7 @@ require'lspconfig'.pyright.setup{}
 
 require'lspconfig'.terraformls.setup{}
 require'lspconfig'.tflint.setup{}
+require'lspconfig'.clangd.setup{}
 
 vim.cmd([[silent! autocmd! filetypedetect BufRead,BufNewFile *.tf]])
 vim.cmd([[autocmd BufRead,BufNewFile *.hcl set filetype=hcl]])
